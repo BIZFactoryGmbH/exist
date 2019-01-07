@@ -3081,6 +3081,7 @@ public class NativeBroker extends DBBroker {
         if (node.hasChildNodes()) {
             final int count = node.getChildCount();
             for (int i = 0; i < count; i++) {
+                try{
             	StoredNode child = (StoredNode) iterator.next();
                 if (child == null) {
                     LOG.fatal("child " + i + " not found for node: " + node.getNodeName() +
@@ -3088,6 +3089,11 @@ public class NativeBroker extends DBBroker {
                     throw new IllegalStateException("Wrong node id");
                 }
                 scanNodes(transaction, iterator, child, currentPath, mode, listener);
+                }
+                catch(ArrayIndexOutOfBoundsException e){
+                    
+                    LOG.warn("invalid childnode code cannot read");
+                }
             }
             if (mode == NodeProcessor.MODE_REPAIR)
                 pool.signalSystemStatus(BrokerPool.SIGNAL_STARTUP);

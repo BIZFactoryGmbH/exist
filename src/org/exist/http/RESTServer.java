@@ -1039,6 +1039,7 @@ public class RESTServer {
 				broker.removeCollection(txn, collection);
 				response.setStatus(HttpServletResponse.SC_OK);
 			} else {
+                            try{
 				DocumentImpl doc = (DocumentImpl) broker.getXMLResource(path);
 				if (doc == null) {
 					transact.abort(txn);
@@ -1056,6 +1057,16 @@ public class RESTServer {
 								path.lastSegment());
 					response.setStatus(HttpServletResponse.SC_OK);
 				}
+                            }catch(ArrayIndexOutOfBoundsException e){
+                                LOG.debug("array out of bounds on get resource "+path);
+                                
+                                Collection collectionParent = broker.getCollection(path.resolveCollectionPath(path));
+                                if(collectionParent == null){
+                                LOG.debug("no parent "+path.resolveCollectionPath(path));
+                                }
+                                collectionParent.removeXMLResource(txn, broker, path.lastSegment());
+                                                                 
+                            }
 			}
 			transact.commit(txn);
 		} catch (TriggerException e) {
