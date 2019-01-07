@@ -28,6 +28,7 @@ import org.exist.storage.Signatures;
 import org.exist.util.ByteArrayPool;
 import org.exist.util.ByteConversion;
 import org.exist.util.UTF8;
+import org.exist.util.XMLString;
 import org.exist.util.pool.NodePool;
 
 import org.w3c.dom.DOMException;
@@ -94,12 +95,21 @@ public class TextImpl extends CharacterDataImpl implements Text {
         pos += LENGTH_SIGNATURE_LENGTH;
         int dlnLen = ByteConversion.byteToShort(data, pos);
         pos += NodeId.LENGTH_NODE_ID_UNITS;
+        try{
         NodeId dln = doc.getBrokerPool().getNodeFactory().createFromData(dlnLen, data, pos);
         text.setNodeId(dln);
         int nodeIdLen = dln.size();
         pos += nodeIdLen;
         text.cdata = UTF8.decode(data, pos, len - (LENGTH_SIGNATURE_LENGTH + nodeIdLen + NodeId.LENGTH_NODE_ID_UNITS));
         return text;
+        }
+        catch(Exception e){
+        LOG.warn("empty text node dummy insert");
+        XMLString dummy = new XMLString();
+        dummy.append("dummy");
+        text.cdata = dummy;
+        return text;
+        }
     }
 
     public void appendData( String arg ) throws DOMException {

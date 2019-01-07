@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/andreasdickow/Documents/github/exist/src/org/exist/http/servlets/HttpResponseWrapper.java</file>
+            <file>file:/Users/andreasdickow/Documents/github/exist/src/org/exist/storage/dom/RawNodeIterator.java</file>
+            <file>file:/Users/andreasdickow/Documents/github/exist/src/org/exist/xmldb/RemoteCollection.java</file>
+            <file>file:/Users/andreasdickow/Documents/github/exist/src/org/exist/storage/NativeBroker.java</file>
+            <file>file:/Users/andreasdickow/Documents/github/exist/src/org/exist/storage/DBBroker.java</file>
+            <file>file:/Users/andreasdickow/Documents/github/exist/src/org/exist/storage/dom/NodeIterator.java</file>
+        </group>
+    </open-files>
 </project-private>

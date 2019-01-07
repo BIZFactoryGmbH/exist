@@ -3086,7 +3086,8 @@ public class NativeBroker extends DBBroker {
                 if (child == null) {
                     LOG.fatal("child " + i + " not found for node: " + node.getNodeName() +
 			      "; children = " + node.getChildCount());
-                    throw new IllegalStateException("Wrong node id");
+                    //throw new IllegalStateException("Wrong node id");
+                    continue;
                 }
                 scanNodes(transaction, iterator, child, currentPath, mode, listener);
                 }

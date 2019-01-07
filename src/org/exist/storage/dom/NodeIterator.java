@@ -175,14 +175,11 @@ public final class NodeIterator implements Iterator {
                         try {
     						nextNode = StoredNode.deserialize(p.data, offset, vlen, doc, useNodePool);
     						offset += vlen;
-                        
                         } catch(Exception e) {
-                            
-                            LOG.warn("0xError while deserializing node: " + e.getMessage(), e);
-                            LOG.warn("aReading from offset: " + offset + "; len = " + vlen);
+                            LOG.warn("Error while deserializing node: " + e.getMessage(), e);
+                            LOG.warn("Reading from offset: " + offset + "; len = " + vlen);
                             LOG.debug(db.debugPageContents(p));
     					    System.out.println(db.debugPageContents(p));
-                           
                             throw new RuntimeException(e);
                         }
 					}
